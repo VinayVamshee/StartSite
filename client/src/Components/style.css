@@ -1,0 +1,145 @@
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    scroll-behavior: smooth;
+}
+.App {
+
+}
+.Home {
+    padding: 50px;
+    min-height: 100vh;
+}
+.SearchDiv {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.SearchDiv h1 {
+    font-size: 70px;
+    font-family:cursive;
+}
+.SearchDiv input {
+    width: 40%;
+    padding: 4px;
+    border-radius: 5px;
+    font-size: 15px;
+}
+.SiteCategoryDiv {
+    padding: 15px;
+    margin: 20px;
+    display: flex;
+    justify-content: space-between;
+    gap: 100px;
+    border-radius: 10px;
+    flex-wrap: wrap;
+}
+.Category {
+    display: flex;
+    justify-content: flex-start;
+    gap: 15px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    background-color: rgba(179, 178, 178, 0.318);
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.WebSite {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.WebSite img {
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
+    transition: .3s ease-in-out;
+}
+.WebSite iframe {
+    display: none;
+}
+.WebSite a:hover {
+    color: blue;
+}
+.Category a {
+    color: black;
+    text-decoration: none;
+}
+.WebSite img:hover{
+    transform: scale(0.88);
+    transition: .3s ease-in-out;
+}
+.AllSites {
+    justify-content: center;
+    display: flex;
+    gap: 30px;
+}
+.AllSites a {
+    color: black;
+    text-decoration: none;
+}
+
+
+.AddNew {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+}
+.AddNew .modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+.AddNew input {
+    padding: 5px;
+    width: 80%;
+}
+
+@media (max-width: 1000px) {
+    .Home {
+    }
+    .SiteCategoryDiv {
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .Category {
+        width: 300px;
+    }
+    .AllSites {
+        justify-content: space-between;
+        gap: 50px;
+    }
+}
+@media (max-width: 780px) {
+    .Home {
+        padding: 5px;
+    }
+    .SearchDiv h1 {
+        font-size: 50px;
+    }
+    .SearchDiv input {
+        width: 100%;
+    }
+    .Category {
+        width: 100%;
+    }
+}
+@media (max-width:600px) {
+    .SearchDiv h1 {
+        display: none;
+    }
+    .AllSites {
+        display: none;
+    }
+    .AddNew {
+        display: none;
+    }
+}
