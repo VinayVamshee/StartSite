@@ -17,7 +17,7 @@ export default function HomePage() {
     const AddNewSite = async (e) => {
         e.preventDefault();
         try {
-            await axios.post("http://localhost:3001/AddNewSite", { ...Site })
+            await axios.post("https://all-in-one-station-server.vercel.app/AddNewSite", { ...Site })
                 .then(result => {
                     console.log(result);
                     alert("Added");
@@ -30,7 +30,7 @@ export default function HomePage() {
     }
 
     const DeleteSite = async (id) => {
-        axios.delete('http://localhost:3001/DeleteSite/' + id)
+        axios.delete('https://all-in-one-station-server.vercel.app/DeleteSite/' + id)
             .then(result => {
                 console.log(result)
                 window.location.reload();
@@ -41,7 +41,7 @@ export default function HomePage() {
     const AddNewCategory = async (e) => {
         e.preventDefault();
         try {
-            await axios.post("http://localhost:3001/AddNewCategory", { ...Category })
+            await axios.post("https://all-in-one-station-server.vercel.app/AddNewCategory", { ...Category })
                 .then(result => {
                     console.log(result);
                     alert("Added");
@@ -68,7 +68,7 @@ export default function HomePage() {
             document.body.style.background = defaultBackgroundColor;
         }
 
-        axios.get('http://localhost:3001/GetSite')
+        axios.get('https://all-in-one-station-server.vercel.app/GetSite')
             .then(result => setAllSite(result.data))
             .catch(error => console.log(error))
     }, [backgroundImage]);
@@ -83,7 +83,7 @@ export default function HomePage() {
     const [AllCategory, setAllCategory] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:3001/GetCategory')
+        axios.get('https://all-in-one-station-server.vercel.app/GetCategory')
             .then(result => setAllCategory(result.data))
             .catch(error => console.log(error))
     }, []);
