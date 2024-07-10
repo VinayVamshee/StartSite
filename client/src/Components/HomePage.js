@@ -61,7 +61,7 @@ export default function HomePage() {
     useEffect(() => {
 
         if (backgroundImage) {
-            document.body.style.background = `url('${backgroundImage}') no-repeat center center fixed`;
+           
             document.body.style.backgroundSize = 'cover';
         } else {
             // If no background image, set the default background color
