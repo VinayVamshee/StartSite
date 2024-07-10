@@ -106,7 +106,7 @@ export default function HomePage() {
 
 
     return (
-        <div className='Home' style={{ background: backgroundImage ? `url('${backgroundImage}') no-repeat cover center` : defaultBackgroundColor }}>
+        <div className='Home' style={{ background: backgroundImage ? `url('${backgroundImage}') no-repeat ` : defaultBackgroundColor }}>
 
             <div className='SearchDiv'>
                 <h1>All-in-One Station</h1>
