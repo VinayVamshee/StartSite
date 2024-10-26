@@ -26,7 +26,7 @@ export default function IndexPage() {
     const AddNewSite = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post("https://start-site-server.vercel.app/AddNewSite", Site, {
+            const response = await axios.post("http://localhost:3001/AddNewSite", Site, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             alert("Site added successfully!");
@@ -39,7 +39,7 @@ export default function IndexPage() {
 
     const DeleteSite = async (id) => {
         try {
-            await axios.delete(`https://start-site-server.vercel.app/DeleteSite/${id}`, {
+            await axios.delete(`http://localhost:3001/DeleteSite/${id}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             alert("Site deleted successfully!");
@@ -53,7 +53,7 @@ export default function IndexPage() {
     const AddNewCategory = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post("https://start-site-server.vercel.app/AddNewCategory", Category, {
+            const response = await axios.post("http://localhost:3001/AddNewCategory", Category, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             alert("Category added successfully!");
@@ -67,7 +67,7 @@ export default function IndexPage() {
     const saveUserBackground = async () => {
         try {
             // eslint-disable-next-line
-            const response = await axios.post("https://start-site-server.vercel.app/saveUserBackground", { backgroundImage }, {
+            const response = await axios.post("http://localhost:3001/saveUserBackground", { backgroundImage }, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             alert("Background image saved successfully!");
@@ -81,7 +81,7 @@ export default function IndexPage() {
         const fetchUserBackground = async () => {
             if (!token) return;
             try {
-                const response = await axios.get('https://start-site-server.vercel.app/getUserBackground', {
+                const response = await axios.get('http://localhost:3001/getUserBackground', {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setBackgroundImage(response.data.backgroundImage || defaultBackgroundColor);
@@ -104,11 +104,11 @@ export default function IndexPage() {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post("https://start-site-server.vercel.app/login", loginData);
+            const response = await axios.post("http://localhost:3001/login", loginData);
             localStorage.setItem('token', response.data.token);
             localStorage.setItem('username', response.data.user?.username || 'user');
             setUserName(response.data.user?.username || 'user');
-            const userResponse = await axios.get("https://start-site-server.vercel.app/getUserBackground", {
+            const userResponse = await axios.get("http://localhost:3001/getUserBackground", {
                 headers: { Authorization: `Bearer ${response.data.token}` }
             });
 
@@ -124,7 +124,7 @@ export default function IndexPage() {
     const handleRegister = async (e) => {
         e.preventDefault();
         try {
-            await axios.post("https://start-site-server.vercel.app/register", registerData);
+            await axios.post("http://localhost:3001/register", registerData);
             alert("Registration Successful. Please login.");
             window.location.reload();
         } catch (error) {
@@ -137,7 +137,7 @@ export default function IndexPage() {
         const fetchSites = async () => {
             if (!token) return;
             try {
-                const response = await axios.get('https://start-site-server.vercel.app/GetSite', {
+                const response = await axios.get('http://localhost:3001/GetSite', {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setAllSite(response.data);
@@ -152,7 +152,7 @@ export default function IndexPage() {
         const fetchCategories = async () => {
             if (!token) return;
             try {
-                const response = await axios.get('https://start-site-server.vercel.app/GetCategory', {
+                const response = await axios.get('http://localhost:3001/GetCategory', {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setAllCategory(response.data);
@@ -192,7 +192,7 @@ export default function IndexPage() {
     const handleUpdate = async () => {
         try {
             // eslint-disable-next-line
-            const updateResponse = await axios.put(`https://start-site-server.vercel.app/sites/${EditSite._id}`, {
+            const updateResponse = await axios.put(`http://localhost:3001/sites/${EditSite._id}`, {
                 Name: EditSite.Name,
                 Url: EditSite.Url,
                 Logo: EditSite.Logo,
@@ -200,7 +200,7 @@ export default function IndexPage() {
             }, {
                 headers: { Authorization: `Bearer ${token}` }
             });
-            const response = await axios.get('https://start-site-server.vercel.app/GetSite', {
+            const response = await axios.get('http://localhost:3001/GetSite', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setAllSite(response.data);
@@ -214,7 +214,7 @@ export default function IndexPage() {
     const handleAdminLogin = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post("https://start-site-server.vercel.app/admin/login", adminData);
+            const response = await axios.post("http://localhost:3001/admin/login", adminData);
             alert("Admin login successful!");
             localStorage.setItem('AdminToken', response.data.token);
             window.location.reload();
@@ -228,7 +228,7 @@ export default function IndexPage() {
         e.preventDefault();
         try {
             // eslint-disable-next-line
-            const response = await axios.post("https://start-site-server.vercel.app/admin/register", registerData);
+            const response = await axios.post("http://localhost:3001/admin/register", registerData);
             alert("Admin registration successful!");
         } catch (error) {
             console.error("Admin registration failed:", error.response?.data || error.message);
@@ -241,7 +241,7 @@ export default function IndexPage() {
         const fetchUsers = async () => {
             if (AdminToken) {
                 try {
-                    const response = await axios.get('https://start-site-server.vercel.app/getAllUsers', {
+                    const response = await axios.get('http://localhost:3001/getAllUsers', {
                         headers: { Authorization: `Bearer ${AdminToken}` }
                     });
                     setUsers(response.data);
@@ -257,7 +257,7 @@ export default function IndexPage() {
     useEffect(() => {
         const fetchFeedbacks = async () => {
             try {
-                const response = await axios.get('https://start-site-server.vercel.app/getfeedback');
+                const response = await axios.get('http://localhost:3001/getfeedback');
                 setFeedbacks(response.data);
             } catch (error) {
                 console.error('Error fetching feedbacks:', error);
@@ -279,7 +279,7 @@ export default function IndexPage() {
     const addSite = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('https://start-site-server.vercel.app/addSite', commonSite);
+            const response = await axios.post('http://localhost:3001/addSite', commonSite);
             setSites([...sites, response.data]);
             setCommonSite({ Name: '', Url: '', Logo: '', Category: '' });
             alert('Site added successfully!');
@@ -292,7 +292,7 @@ export default function IndexPage() {
 
     const handleCommonSiteUpdate = async () => {
         try {
-            const response = await axios.put(`https://start-site-server.vercel.app/editCommonSite/${editCommonSite._id}`, editCommonSite);
+            const response = await axios.put(`http://localhost:3001/editCommonSite/${editCommonSite._id}`, editCommonSite);
             setSites(prevSites => prevSites.map(site => site._id === editCommonSite._id ? response.data : site));
             alert('Site updated successfully!');
         } catch (error) {
@@ -303,7 +303,7 @@ export default function IndexPage() {
 
     const deleteSite = async (siteId) => {
         try {
-            await axios.delete(`https://start-site-server.vercel.app/deletecommonsite/${siteId}`);
+            await axios.delete(`http://localhost:3001/deletecommonsite/${siteId}`);
             setSites(prevSites => prevSites.filter(site => site._id !== siteId));
             alert('Site deleted successfully!');
         } catch (error) {
@@ -321,7 +321,7 @@ export default function IndexPage() {
     const addCategory = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('https://start-site-server.vercel.app/addCategory', commonCategory);
+            const response = await axios.post('http://localhost:3001/addCategory', commonCategory);
             setCommonCategories([...commonCategories, response.data]);
             alert('Category added successfully!');
         } catch (error) {
@@ -334,10 +334,10 @@ export default function IndexPage() {
     useEffect(() => {
         const fetchSitesAndCategories = async () => {
             try {
-                const sitesResponse = await axios.get('https://start-site-server.vercel.app/getAllSites');
+                const sitesResponse = await axios.get('http://localhost:3001/getAllSites');
                 setAllSites(sitesResponse.data);
 
-                const response = await axios.get('https://start-site-server.vercel.app/getAllCommonCategories');
+                const response = await axios.get('http://localhost:3001/getAllCommonCategories');
                 setAllCommonCategories(response.data);
             } catch (error) {
                 console.error('Error fetching sites or categories', error);
@@ -351,7 +351,7 @@ export default function IndexPage() {
 
     const deleteCommonCategory = async (categoryId) => {
         try {
-            await axios.delete(`https://start-site-server.vercel.app/deleteCommonCategory/${categoryId}`);
+            await axios.delete(`http://localhost:3001/deleteCommonCategory/${categoryId}`);
             alert('Category deleted successfully!');
         } catch (error) {
             console.error('Error deleting category:', error);
@@ -366,7 +366,7 @@ export default function IndexPage() {
         const message = event.target.message.value;
 
         try {
-            await axios.post('https://start-site-server.vercel.app/feedback', { name, message });
+            await axios.post('http://localhost:3001/feedback', { name, message });
             alert('Feedback submitted successfully!');
         } catch (error) {
             console.error('Error submitting feedback:', error);
@@ -376,7 +376,7 @@ export default function IndexPage() {
 
     const deleteCategory = async (categoryId) => {
         try {
-            await axios.delete(`https://start-site-server.vercel.app/DeleteCategory/${categoryId}`, {
+            await axios.delete(`http://localhost:3001/DeleteCategory/${categoryId}`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 }
