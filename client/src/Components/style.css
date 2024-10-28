@@ -183,11 +183,4 @@
    .editCheckbox {
     display: none;
    }
-   *{
-    font-size: 14px;
-   }
-   .WebSite a img {
-    height: 70px;
-    width: 70px;
-   }
 }
