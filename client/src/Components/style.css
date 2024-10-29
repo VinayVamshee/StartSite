@@ -3,6 +3,7 @@
     flex-direction: column;
     height: 110vh;
     background-size: cover;
+    background-repeat: no-repeat;
 }
 .navbar {
     padding: 5px;
@@ -161,6 +162,9 @@
 }
 
 @media screen and (max-width: 940px) {
+    .IndexPage {
+        height: auto;
+    }
    .Categories {
     flex-direction: column;
    }
@@ -184,9 +188,8 @@
     *{
         font-size: 12px;
     }
-    .footer {
-        width:100%;
+    .navbar .Login {
+        width: 100%;
         justify-content: flex-end;
     }
-
 }
