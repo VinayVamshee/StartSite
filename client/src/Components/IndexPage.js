@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './style.css'
+import srinivas from './SrinivasRao.png'
 
 export default function IndexPage() {
     const [Site, setSite] = useState({
@@ -897,7 +898,53 @@ export default function IndexPage() {
                 }
             </div>
             <div className='footer'>
-                <button className='btn btn-primary' data-bs-toggle="modal" data-bs-target="#FeedbackModal">Feedback</button>
+
+                <button type="button" className="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#aboutModal">
+                    About
+                </button>
+
+                <div className="modal fade" id="aboutModal" tabIndex="-1" aria-labelledby="aboutModalLabel" aria-hidden="true">
+                    <div className="modal-dialog modal-lg">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h1 className="modal-title fs-5" id="aboutModalLabel">About</h1>
+                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div className="modal-body">
+                                <div className='AboutWebsite'>
+                                    <p><strong>W</strong>elcome to our website, designed to enhance your browsing experience and save you time.
+                                    With our platform, you can easily search for and save your favorite websites without the hassle of searching each time.
+                                    Our user-friendly interface allows you to categorize your saved sites, add unique logos, and customize your experience to suit your needs.
+                                    Plus, you can edit all details to keep your information up to date and even change the wallpaper to personalize your space.
+                                    Simplify your online navigation and make the most of your web experience with us!</p>
+                                    <br />
+                                    <br />
+                                    <h4>Quick Start Guide</h4>
+                                    <h5>Sign Up:</h5>
+                                    Go to Login, select New User? Register, and create your account.
+                                    <h5>Log In:</h5>
+                                    Use your new credentials to log in.
+                                    <h5>Add Websites:</h5>
+                                    On your dashboard, start adding websites to your personal collection.
+                                    <h5>Organize & Customize:</h5>
+                                    Add categories, logos, and set a background for easy access.
+                                    Now, all your favorite sites are saved and easy to find!
+                                </div>
+                                <div className='AboutAdmin'>
+                                    <div className='adminDetails'>
+                                        <strong>Pechetti Srinivas Rao</strong> ( Cheif Enquiry Inspector - Vigilance Department )
+                                        <strong>Contact Details</strong> <a href="tel:9752375075">9752375075</a>
+                                        <a href="mailto:cvipsecr@gmail.com">cvipsecr@gmail.com</a>
+                                    </div>
+                                    <img src={srinivas} alt='...' />
+                                </div>
+                            </div>
+                            <div className="modal-footer">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button className='btn btn-warning' data-bs-toggle="modal" data-bs-target="#FeedbackModal">Give Feedback</button>
                 <div className="modal fade" id="FeedbackModal" tabIndex="-1" aria-labelledby="FeedbackModalLabel" aria-hidden="true">
                     <div className="modal-dialog">
                         <div className="modal-content">
