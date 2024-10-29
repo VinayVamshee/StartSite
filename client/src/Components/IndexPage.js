@@ -416,10 +416,8 @@ export default function IndexPage() {
 
         if (token) {
             fetchUserBackground();
-        } else if (AdminToken) {
-            fetchCommonBackground();
         } else {
-            setBackgroundImage(defaultBackgroundColor);
+            fetchCommonBackground();
         }
     }, [token, AdminToken]);
 
