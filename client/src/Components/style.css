@@ -1,7 +1,7 @@
 .IndexPage {
     display: flex;
     flex-direction: column;
-    height: 110vh;
+    min-height: 100vh;
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -173,7 +173,7 @@
     justify-content: flex-start;
    }
     .AllSites{
-          justify-content: space-between;
+          justify-content: space-around;
     }
    .navbar p{
     display: none;
