@@ -915,8 +915,8 @@ export default function IndexPage() {
                                     Our user-friendly interface allows you to categorize your saved sites, add unique logos, and customize your experience to suit your needs.
                                     Plus, you can edit all details to keep your information up to date and even change the wallpaper to personalize your space.
                                     Simplify your online navigation and make the most of your web experience with us!</p>
-                                    <br />
-                                    <br />
+                                    <p>If you don't have an account or prefer not to create one, you can still enjoy quick access to our pre-saved websites directly from the home screen. Simply browse through the curated categories and popular sites we've saved to make it easy for you to find essential websites, no sign-up needed!</p>
+                                    <br/>
                                     <h4>Quick Start Guide</h4>
                                     <h5>Sign Up:</h5>
                                     Go to Login, select New User? Register, and create your account.
@@ -930,14 +930,15 @@ export default function IndexPage() {
                                 </div>
                                 <div className='AboutAdmin'>
                                     <div className='adminDetails'>
-                                        <strong>Pechetti Srinivas Rao</strong> ( Cheif Enquiry Inspector - Vigilance Department )
-                                        <strong>Contact Details</strong> <a href="tel:9752375075">9752375075</a>
+                                        <strong>Srinivas Rao</strong>
+                                        <strong2>Contact Details</strong2> <a href="tel:9752375075">9752375075</a>
                                         <a href="mailto:cvipsecr@gmail.com">cvipsecr@gmail.com</a>
                                     </div>
                                     <img src={srinivas} alt='...' />
                                 </div>
                             </div>
-                            <div className="modal-footer">
+                            <div className="modal-footer privacy">
+                            Your privacy is our top priority. All personal information and account details provided on this website are securely stored and protected against unauthorized access. We adhere to strict privacy standards, ensuring that your data remains safe and is never shared with third parties. Enjoy a secure experience every time you visit.
                             </div>
                         </div>
                     </div>
