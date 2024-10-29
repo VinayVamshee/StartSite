@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './style.css'
 
 export default function IndexPage() {
     const [Site, setSite] = useState({
@@ -15,11 +16,8 @@ export default function IndexPage() {
 
     const [AllSite, setAllSite] = useState([]);
     const [AllCategory, setAllCategory] = useState([]);
-    const defaultBackgroundColor = 'https://4kwallpapers.com/images/walls/thumbs_2t/11581.png';
-    const [backgroundImage, setBackgroundImage] = useState(defaultBackgroundColor);
     const [loginData, setLoginData] = useState({ username: '', password: '' });
     const [registerData, setRegisterData] = useState({ username: '', password: '', phoneno: '' });
-
     const token = localStorage.getItem('token');
     const AdminToken = localStorage.getItem('AdminToken');
 
@@ -32,6 +30,7 @@ export default function IndexPage() {
             alert("Site added successfully!");
             setAllSite([...AllSite, response.data]);
         } catch (error) {
+            console.error("Error adding site:", error);
             alert("Failed to add site.");
         }
     };
@@ -44,6 +43,7 @@ export default function IndexPage() {
             alert("Site deleted successfully!");
             setAllSite(AllSite.filter(site => site._id !== id));
         } catch (error) {
+            console.error("Error deleting site:", error);
             alert("Failed to delete site.");
         }
     };
@@ -57,36 +57,10 @@ export default function IndexPage() {
             alert("Category added successfully!");
             setAllCategory([...AllCategory, response.data]);
         } catch (error) {
+            console.error("Error adding category:", error);
             alert("Failed to add category.");
         }
     };
-
-    const saveUserBackground = async () => {
-        try {
-            // eslint-disable-next-line
-            const response = await axios.post("https://start-site-server.vercel.app/saveUserBackground", { backgroundImage }, {
-                headers: { Authorization: `Bearer ${token}` }
-            });
-            alert("Background image saved successfully!");
-        } catch (error) {
-            alert("Failed to save background image.");
-        }
-    };
-
-    useEffect(() => {
-        const fetchUserBackground = async () => {
-            if (!token) return;
-            try {
-                const response = await axios.get('https://start-site-server.vercel.app/getUserBackground', {
-                    headers: { Authorization: `Bearer ${token}` }
-                });
-                setBackgroundImage(response.data.backgroundImage || defaultBackgroundColor);
-            } catch (error) {
-                setBackgroundImage(defaultBackgroundColor);
-            }
-        };
-        fetchUserBackground();
-    }, [token]);
 
     const [userName, setUserName] = useState('');
     useEffect(() => {
@@ -111,6 +85,7 @@ export default function IndexPage() {
             alert("Login successful!");
             window.location.reload();
         } catch (error) {
+            console.error("Login failed:", error.response?.data || error.message);
             alert(error.response?.data.msg || "Invalid credentials.");
         }
     };
@@ -122,6 +97,7 @@ export default function IndexPage() {
             alert("Registration Successful. Please login.");
             window.location.reload();
         } catch (error) {
+            console.error("Registration failed", error);
             alert("Registration failed");
         }
     };
@@ -135,6 +111,7 @@ export default function IndexPage() {
                 });
                 setAllSite(response.data);
             } catch (error) {
+                console.error("Error fetching sites:", error);
             }
         };
         fetchSites();
@@ -149,6 +126,7 @@ export default function IndexPage() {
                 });
                 setAllCategory(response.data);
             } catch (error) {
+                console.error("Error fetching categories:", error);
             }
         };
         fetchCategories();
@@ -197,6 +175,7 @@ export default function IndexPage() {
             setAllSite(response.data);
             setEditSite({ Name: '', Url: '', Logo: '', Category: '' });
         } catch (error) {
+            console.error("Error updating site:", error);
         }
     };
     const [adminData, setAdminData] = useState({ username: '', password: '' });
@@ -209,6 +188,7 @@ export default function IndexPage() {
             localStorage.setItem('AdminToken', response.data.token);
             window.location.reload();
         } catch (error) {
+            console.error("Admin login failed:", error.response?.data || error.message);
             alert(error.response?.data.msg || "Invalid admin credentials.");
         }
     };
@@ -220,6 +200,7 @@ export default function IndexPage() {
             const response = await axios.post("https://start-site-server.vercel.app/admin/register", registerData);
             alert("Admin registration successful!");
         } catch (error) {
+            console.error("Admin registration failed:", error.response?.data || error.message);
             alert(error.response?.data.msg || "Registration failed.");
         }
     };
@@ -234,6 +215,7 @@ export default function IndexPage() {
                     });
                     setUsers(response.data);
                 } catch (error) {
+                    console.error('Error fetching users', error);
                 }
             }
         };
@@ -247,6 +229,7 @@ export default function IndexPage() {
                 const response = await axios.get('https://start-site-server.vercel.app/getfeedback');
                 setFeedbacks(response.data);
             } catch (error) {
+                console.error('Error fetching feedbacks:', error);
             }
         };
 
@@ -270,6 +253,7 @@ export default function IndexPage() {
             setCommonSite({ Name: '', Url: '', Logo: '', Category: '' });
             alert('Site added successfully!');
         } catch (error) {
+            console.error('Error adding site:', error);
         }
     };
 
@@ -281,6 +265,7 @@ export default function IndexPage() {
             setSites(prevSites => prevSites.map(site => site._id === editCommonSite._id ? response.data : site));
             alert('Site updated successfully!');
         } catch (error) {
+            console.error('Error updating site:', error);
             alert('Failed to update site. Please try again.');
         }
     };
@@ -291,6 +276,7 @@ export default function IndexPage() {
             setSites(prevSites => prevSites.filter(site => site._id !== siteId));
             alert('Site deleted successfully!');
         } catch (error) {
+            console.error('Error deleting site:', error);
             alert('Failed to delete site. Please try again.');
         }
     };
@@ -308,6 +294,7 @@ export default function IndexPage() {
             setCommonCategories([...commonCategories, response.data]);
             alert('Category added successfully!');
         } catch (error) {
+            console.error('Error adding category:', error);
         }
     };
 
@@ -322,6 +309,7 @@ export default function IndexPage() {
                 const response = await axios.get('https://start-site-server.vercel.app/getAllCommonCategories');
                 setAllCommonCategories(response.data);
             } catch (error) {
+                console.error('Error fetching sites or categories', error);
             }
         };
         fetchSitesAndCategories();
@@ -335,6 +323,7 @@ export default function IndexPage() {
             await axios.delete(`https://start-site-server.vercel.app/deleteCommonCategory/${categoryId}`);
             alert('Category deleted successfully!');
         } catch (error) {
+            console.error('Error deleting category:', error);
             alert('Failed to delete category. Please try again.');
         }
     };
@@ -349,6 +338,7 @@ export default function IndexPage() {
             await axios.post('https://start-site-server.vercel.app/feedback', { name, message });
             alert('Feedback submitted successfully!');
         } catch (error) {
+            console.error('Error submitting feedback:', error);
             alert('Error submitting feedback. Please try again.');
         }
     };
@@ -363,14 +353,80 @@ export default function IndexPage() {
             setAllCategory(prevCategories => prevCategories.filter(category => category._id !== categoryId));
             alert('Category deleted successfully!');
         } catch (error) {
+            console.error('Error deleting category:', error);
             alert('Failed to delete category. Please try again.');
         }
     };
 
+    const defaultBackgroundColor = 'https://4kwallpapers.com/images/walls/thumbs_2t/11581.png';
+    const [backgroundImage, setBackgroundImage] = useState(defaultBackgroundColor);
+    // eslint-disable-next-line 
+    const [commonBackground, setCommonBackground] = useState(defaultBackgroundColor);
+    const [newBackgroundImage, setNewBackgroundImage] = useState('');
+
+    const saveUserBackground = async () => {
+        try {
+            // eslint-disable-next-line
+            const response = await axios.post("https://start-site-server.vercel.app/saveUserBackground", { backgroundImage }, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            alert("Background image saved successfully!");
+        } catch (error) {
+            console.error("Error saving background image:", error);
+            alert("Failed to save background image.");
+        }
+    };
+
+    const updateCommonBackground = async () => {
+        try {
+            await axios.post('https://start-site-server.vercel.app/saveCommonBackground', { backgroundImage: newBackgroundImage });
+            setCommonBackground(newBackgroundImage);
+            alert("Common background updated successfully!");
+            window.location.reload();
+        } catch (error) {
+            console.error("Error saving common background:", error);
+            alert("Failed to save common background.");
+        }
+    };
+
+    useEffect(() => {
+        const fetchUserBackground = async () => {
+            try {
+                const response = await axios.get('https://start-site-server.vercel.app/getUserBackground', {
+                    headers: { Authorization: `Bearer ${token}` }
+                });
+                setBackgroundImage(response.data.backgroundImage || defaultBackgroundColor);
+            } catch (error) {
+                console.error("Error fetching user background:", error);
+                setBackgroundImage(defaultBackgroundColor);
+            }
+        };
+
+        const fetchCommonBackground = async () => {
+            try {
+                const response = await axios.get('https://start-site-server.vercel.app/getCommonBackground');
+                setCommonBackground(response.data.backgroundImage || defaultBackgroundColor);
+                setBackgroundImage(response.data.backgroundImage || defaultBackgroundColor);
+            } catch (error) {
+                console.error("Error fetching common background:", error);
+                setBackgroundImage(defaultBackgroundColor);
+            }
+        };
+
+        if (token) {
+            fetchUserBackground();
+        } else if (AdminToken) {
+            fetchCommonBackground();
+        } else {
+            setBackgroundImage(defaultBackgroundColor);
+        }
+    }, [token, AdminToken]);
+
+
     return (
-        <div className='IndexPage' style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        <div className='IndexPage' style={{ backgroundImage: `url(${backgroundImage})` }}>
             <div className='navbar'>
-                <p>My Website at a Glance...</p>
+                <p>My Website at a glance...</p>
                 <form className='Search' onSubmit={googleSearch}>
                     <input id='search' type='text' placeholder='Google Search...' />
                 </form>
@@ -420,6 +476,34 @@ export default function IndexPage() {
                                     </div>
                                 </div>
                             </div>
+
+                            <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#changecommonbackgroundModal">
+                                Change Background
+                            </button>
+                            <div className="modal fade" id="changecommonbackgroundModal" tabIndex="-1" aria-labelledby="changecommonbackgroundModalLabel" aria-hidden="true">
+                                <div className="modal-dialog">
+                                    <div className="modal-content">
+                                        <div className="modal-header">
+                                            <h1 className="modal-title fs-5" id="changecommonbackgroundModalLabel">Change Background</h1>
+                                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div className="modal-body">
+                                            <input
+                                                type="text"
+                                                placeholder="Enter background image URL"
+                                                value={newBackgroundImage}
+                                                onChange={(e) => setNewBackgroundImage(e.target.value)}
+                                                className="form-control"
+                                            />
+                                        </div>
+                                        <div className="modal-footer">
+                                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="button" className="btn btn-primary" onClick={updateCommonBackground}>Save changes</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
 
                             <button className='btn btn-primary' data-bs-toggle="modal" data-bs-target="#AddCommonCategoryModal">Add Category</button>
                             <div className="modal fade" id="AddCommonCategoryModal" tabIndex="-1" aria-labelledby="AddCommonCategoryModalLabel" aria-hidden="true">
@@ -720,9 +804,9 @@ export default function IndexPage() {
                         null
                         :
                         <>
-                            <div className='Categories row'>
+                            <div className='Categories'>
                                 {allCommonCategories.map((category, idx) => (
-                                    <div key={idx} className='Category col-3'>
+                                    <div key={idx} className='Category'>
                                         {allSites.filter(site => site.Category.trim().toLowerCase() === category.Name.trim().toLowerCase())
                                             .map((site, index) => (
                                                 <div key={index} className='WebSite'>
@@ -813,7 +897,7 @@ export default function IndexPage() {
                 }
             </div>
             <div className='footer'>
-                <button className='btn btn-primary' data-bs-toggle="modal" data-bs-target="#FeedbackModal">Give Feedback</button>
+                <button className='btn btn-primary' data-bs-toggle="modal" data-bs-target="#FeedbackModal">Feedback</button>
                 <div className="modal fade" id="FeedbackModal" tabIndex="-1" aria-labelledby="FeedbackModalLabel" aria-hidden="true">
                     <div className="modal-dialog">
                         <div className="modal-content">
