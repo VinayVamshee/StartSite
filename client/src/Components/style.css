@@ -167,7 +167,6 @@
     justify-content: space-between;
     align-items: center;
     padding-bottom: 1px;
-    border-bottom: 1px solid black;
 }
 .AboutAdmin .adminDetails {
     display: flex;
@@ -175,8 +174,17 @@
     font-size: larger;
 }
 .adminDetails strong {
+    font-size:xx-large;
+    font-style: italic;
+}
+.adminDetails strong2 {
     font-size:x-large;
     font-style: italic;
+}
+.privacy {
+    font-style: italic;
+    background-color: rgba(128, 128, 128, 0.177);
+    color: rgb(255, 0, 0);
 }
 .adminDetails a {
     text-decoration:none;
