@@ -392,7 +392,7 @@ export default function IndexPage() {
     return (
         <div className='IndexPage' style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
             <div className='navbar'>
-                <p>My WebSite At A Glance...</p>
+                <p>My Website at a Glance...</p>
                 <form className='Search' onSubmit={googleSearch}>
                     <input id='search' type='text' placeholder='Google Search...' />
                 </form>
