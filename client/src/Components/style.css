@@ -183,4 +183,9 @@
     *{
         font-size: 12px;
     }
+    .footer {
+        width:100%;
+        justify-content: flex-end;
+    }
+
 }
