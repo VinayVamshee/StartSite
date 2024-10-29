@@ -368,7 +368,7 @@ app.get('/getCommonBackground', async (req, res) => {
 const start = async () => {
     try {
         await connectDB();
-        app.listen(PORT,'0.0.0.0', () => {
+        app.listen(PORT, () => {
             console.log(`Server running on port ${PORT}`);
         });
     } catch (error) {
