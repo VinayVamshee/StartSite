@@ -167,6 +167,9 @@
     width: 100%;
     justify-content: flex-start;
    }
+    .AllSites{
+          justify-content: space-between;
+    }
    .navbar p{
     display: none;
    }
