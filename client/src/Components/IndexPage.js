@@ -32,7 +32,6 @@ export default function IndexPage() {
             alert("Site added successfully!");
             setAllSite([...AllSite, response.data]);
         } catch (error) {
-            console.error("Error adding site:", error);
             alert("Failed to add site.");
         }
     };
@@ -45,7 +44,6 @@ export default function IndexPage() {
             alert("Site deleted successfully!");
             setAllSite(AllSite.filter(site => site._id !== id));
         } catch (error) {
-            console.error("Error deleting site:", error);
             alert("Failed to delete site.");
         }
     };
@@ -59,7 +57,6 @@ export default function IndexPage() {
             alert("Category added successfully!");
             setAllCategory([...AllCategory, response.data]);
         } catch (error) {
-            console.error("Error adding category:", error);
             alert("Failed to add category.");
         }
     };
@@ -72,7 +69,6 @@ export default function IndexPage() {
             });
             alert("Background image saved successfully!");
         } catch (error) {
-            console.error("Error saving background image:", error);
             alert("Failed to save background image.");
         }
     };
@@ -86,7 +82,6 @@ export default function IndexPage() {
                 });
                 setBackgroundImage(response.data.backgroundImage || defaultBackgroundColor);
             } catch (error) {
-                console.error("Error fetching user background:", error);
                 setBackgroundImage(defaultBackgroundColor);
             }
         };
@@ -116,7 +111,6 @@ export default function IndexPage() {
             alert("Login successful!");
             window.location.reload();
         } catch (error) {
-            console.error("Login failed:", error.response?.data || error.message);
             alert(error.response?.data.msg || "Invalid credentials.");
         }
     };
@@ -128,7 +122,6 @@ export default function IndexPage() {
             alert("Registration Successful. Please login.");
             window.location.reload();
         } catch (error) {
-            console.error("Registration failed", error);
             alert("Registration failed");
         }
     };
@@ -142,7 +135,6 @@ export default function IndexPage() {
                 });
                 setAllSite(response.data);
             } catch (error) {
-                console.error("Error fetching sites:", error);
             }
         };
         fetchSites();
@@ -157,7 +149,6 @@ export default function IndexPage() {
                 });
                 setAllCategory(response.data);
             } catch (error) {
-                console.error("Error fetching categories:", error);
             }
         };
         fetchCategories();
@@ -206,7 +197,6 @@ export default function IndexPage() {
             setAllSite(response.data);
             setEditSite({ Name: '', Url: '', Logo: '', Category: '' });
         } catch (error) {
-            console.error("Error updating site:", error);
         }
     };
     const [adminData, setAdminData] = useState({ username: '', password: '' });
@@ -219,7 +209,6 @@ export default function IndexPage() {
             localStorage.setItem('AdminToken', response.data.token);
             window.location.reload();
         } catch (error) {
-            console.error("Admin login failed:", error.response?.data || error.message);
             alert(error.response?.data.msg || "Invalid admin credentials.");
         }
     };
@@ -231,7 +220,6 @@ export default function IndexPage() {
             const response = await axios.post("https://start-site-server.vercel.app/admin/register", registerData);
             alert("Admin registration successful!");
         } catch (error) {
-            console.error("Admin registration failed:", error.response?.data || error.message);
             alert(error.response?.data.msg || "Registration failed.");
         }
     };
@@ -246,7 +234,6 @@ export default function IndexPage() {
                     });
                     setUsers(response.data);
                 } catch (error) {
-                    console.error('Error fetching users', error);
                 }
             }
         };
@@ -260,7 +247,6 @@ export default function IndexPage() {
                 const response = await axios.get('https://start-site-server.vercel.app/getfeedback');
                 setFeedbacks(response.data);
             } catch (error) {
-                console.error('Error fetching feedbacks:', error);
             }
         };
 
@@ -284,7 +270,6 @@ export default function IndexPage() {
             setCommonSite({ Name: '', Url: '', Logo: '', Category: '' });
             alert('Site added successfully!');
         } catch (error) {
-            console.error('Error adding site:', error);
         }
     };
 
@@ -296,7 +281,6 @@ export default function IndexPage() {
             setSites(prevSites => prevSites.map(site => site._id === editCommonSite._id ? response.data : site));
             alert('Site updated successfully!');
         } catch (error) {
-            console.error('Error updating site:', error);
             alert('Failed to update site. Please try again.');
         }
     };
@@ -307,7 +291,6 @@ export default function IndexPage() {
             setSites(prevSites => prevSites.filter(site => site._id !== siteId));
             alert('Site deleted successfully!');
         } catch (error) {
-            console.error('Error deleting site:', error);
             alert('Failed to delete site. Please try again.');
         }
     };
@@ -325,7 +308,6 @@ export default function IndexPage() {
             setCommonCategories([...commonCategories, response.data]);
             alert('Category added successfully!');
         } catch (error) {
-            console.error('Error adding category:', error);
         }
     };
 
@@ -340,7 +322,6 @@ export default function IndexPage() {
                 const response = await axios.get('https://start-site-server.vercel.app/getAllCommonCategories');
                 setAllCommonCategories(response.data);
             } catch (error) {
-                console.error('Error fetching sites or categories', error);
             }
         };
         fetchSitesAndCategories();
@@ -354,7 +335,6 @@ export default function IndexPage() {
             await axios.delete(`https://start-site-server.vercel.app/deleteCommonCategory/${categoryId}`);
             alert('Category deleted successfully!');
         } catch (error) {
-            console.error('Error deleting category:', error);
             alert('Failed to delete category. Please try again.');
         }
     };
@@ -369,7 +349,6 @@ export default function IndexPage() {
             await axios.post('https://start-site-server.vercel.app/feedback', { name, message });
             alert('Feedback submitted successfully!');
         } catch (error) {
-            console.error('Error submitting feedback:', error);
             alert('Error submitting feedback. Please try again.');
         }
     };
@@ -384,7 +363,6 @@ export default function IndexPage() {
             setAllCategory(prevCategories => prevCategories.filter(category => category._id !== categoryId));
             alert('Category deleted successfully!');
         } catch (error) {
-            console.error('Error deleting category:', error);
             alert('Failed to delete category. Please try again.');
         }
     };
@@ -415,15 +393,15 @@ export default function IndexPage() {
                     (AdminToken && !token) ?
                         <div className='footer'>
                             <div className='editCheckbox'><input type='checkbox' checked={AdmineditMode} onChange={(e) => setAdminEditMode(e.target.checked)} />Edit Admin Page</div>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ShowFeedbackModal">Show Feedback</button>
-                            <div class="modal fade" id="ShowFeedbackModal" tabindex="-1" aria-labelledby="ShowFeedbackModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="ShowFeedbackModalLabel">FeedBacks</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ShowFeedbackModal">Show Feedback</button>
+                            <div className="modal fade" id="ShowFeedbackModal" tabIndex="-1" aria-labelledby="ShowFeedbackModalLabel" aria-hidden="true">
+                                <div className="modal-dialog">
+                                    <div className="modal-content">
+                                        <div className="modal-header">
+                                            <h1 className="modal-title fs-5" id="ShowFeedbackModalLabel">FeedBacks</h1>
+                                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
-                                        <div class="modal-body">
+                                        <div className="modal-body">
                                             {feedbacks.length === 0 ? (
                                                 <p>No feedback available.</p>
                                             ) : (
@@ -436,8 +414,8 @@ export default function IndexPage() {
                                                 </ul>
                                             )}
                                         </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <div className="modal-footer">
+                                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                         </div>
                                     </div>
                                 </div>
