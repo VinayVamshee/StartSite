@@ -340,10 +340,35 @@ app.get('/getfeedback', async (req, res) => {
     }
 });
 
+const CommonBackground = require('./Models/CommonBackground');
+
+app.post('/saveCommonBackground', async (req, res) => {
+    const { backgroundImage } = req.body;
+    try {
+        const commonBackground = await CommonBackground.findOneAndUpdate(
+            {},
+            { backgroundImage, updatedAt: Date.now() },
+            { new: true, upsert: true } 
+        );
+        res.status(200).send({ msg: "Common background updated successfully!", commonBackground });
+    } catch (error) {
+        res.status(500).send({ msg: "Error updating common background." });
+    }
+});
+
+app.get('/getCommonBackground', async (req, res) => {
+    try {
+        const commonBackground = await CommonBackground.findOne();
+        res.status(200).send({ backgroundImage: commonBackground?.backgroundImage });
+    } catch (error) {
+        res.status(500).send({ msg: "Error fetching common background." });
+    }
+});
+
 const start = async () => {
     try {
         await connectDB();
-        app.listen(PORT, () => {
+        app.listen(PORT,'0.0.0.0', () => {
             console.log(`Server running on port ${PORT}`);
         });
     } catch (error) {
