@@ -813,7 +813,7 @@ export default function IndexPage() {
                 }
             </div>
             <div className='footer'>
-                <button className='btn btn-primary' data-bs-toggle="modal" data-bs-target="#FeedbackModal">Feedback</button>
+                <button className='btn btn-primary' data-bs-toggle="modal" data-bs-target="#FeedbackModal">Give Feedback</button>
                 <div className="modal fade" id="FeedbackModal" tabIndex="-1" aria-labelledby="FeedbackModalLabel" aria-hidden="true">
                     <div className="modal-dialog">
                         <div className="modal-content">
