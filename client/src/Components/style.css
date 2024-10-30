@@ -184,7 +184,7 @@
 .privacy {
     font-style: italic;
     background-color: rgba(128, 128, 128, 0.177);
-    color: rgb(255, 0, 0);
+    color: blue;
 }
 .adminDetails a {
     text-decoration:none;
