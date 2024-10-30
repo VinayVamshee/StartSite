@@ -185,6 +185,7 @@
     font-style: italic;
     background-color: rgba(128, 128, 128, 0.177);
     color: blue;
+    text-align: justify;
 }
 .adminDetails a {
     text-decoration:none;
