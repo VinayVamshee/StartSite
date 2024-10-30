@@ -919,13 +919,13 @@ export default function IndexPage() {
                                     <br/>
                                     <h4>Quick Start Guide</h4>
                                     <h5>Sign Up:</h5>
-                                    Go to Login, select New User? Register, and create your account.
+                                    Go to Login, select New User? Register, and create your account.<br/><br/>
                                     <h5>Log In:</h5>
-                                    Use your new credentials to log in.
+                                    Use your new credentials to log in.<br/><br/>
                                     <h5>Add Websites:</h5>
-                                    On your dashboard, start adding websites to your personal collection.
+                                    On your dashboard, start adding websites to your personal collection.<br/><br/>
                                     <h5>Organize & Customize:</h5>
-                                    Add categories, logos, and set a background for easy access.
+                                    Add categories, logos, and set a background for easy access.<br/>
                                     Now, all your favorite sites are saved and easy to find!
                                 </div>
                                 <div className='AboutAdmin'>
