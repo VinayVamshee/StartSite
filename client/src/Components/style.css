@@ -1,5 +1,6 @@
 * {
     font-family: 'Times New Roman', Times, serif;
+    scroll-behavior: smooth;
 }
 .IndexPage {
     display: flex;
@@ -24,9 +25,9 @@
 }
 .navbar .Login {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
-    width: auto;
+    width: 100%;
     gap: 5px;
 }
 .navbar .Login h3 {
@@ -110,7 +111,7 @@
 
 .AllSites {
     border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.637);
+    background-color: rgba(255, 255, 255, 0.595);
     padding: 5px;
     display: flex;
     gap: 5px;
@@ -185,7 +186,6 @@
     font-style: italic;
     background-color: rgba(128, 128, 128, 0.177);
     color: blue;
-    text-align: justify;
 }
 .adminDetails a {
     text-decoration:none;
@@ -214,6 +214,10 @@
 }
 .AboutWebsite h5 {
     font-weight: bold;
+}
+
+.footer .mobile {
+    display: none;
 }
 
 
@@ -248,5 +252,28 @@
     .navbar .Login {
         width: 100%;
         justify-content: flex-end;
+    }
+    .footer {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+    
+}
+
+@media screen and (max-width: 675px) {
+    .footer {
+        position: relative;
+    }
+    .footer .desktop {
+        display: none;
+    }
+    .footer .mobile {
+        display: contents;
+    }
+    .footer .dropdown-menu .editCheckbox{
+        justify-content: flex-start;
+    }
+    .footer .dropdown-menu .btn {
+        text-align: left;
     }
 }
