@@ -421,6 +421,8 @@ export default function IndexPage() {
         }
     }, [token, AdminToken]);
 
+    const [showHomeSites, setShowHomeSites] = useState(false);
+
 
     return (
         <div className='IndexPage' style={{ backgroundImage: `url(${backgroundImage})` }}>
@@ -433,11 +435,38 @@ export default function IndexPage() {
                 {
                     token ?
                         <div className='footer'>
-                            <div className='editCheckbox'><input type='checkbox' checked={editMode}
-                                onChange={(e) => setEditMode(e.target.checked)} />Edit Site</div>
-                            <button className='btn btn-info' data-bs-toggle="modal" data-bs-target="#ChangeBackgroundModal">Change Background</button>
-                            <button className='btn btn-info' data-bs-toggle="modal" data-bs-target="#AddNewCategoryModal">Add Category</button>
-                            <button className='btn btn-info' data-bs-toggle="modal" data-bs-target="#AddNewSiteModal">Add WebSite</button>
+                            <div className='editCheckbox desktop'><input type='checkbox' checked={editMode} onChange={(e) => setEditMode(e.target.checked)} />Edit Site</div>
+                            <div className='editCheckbox desktop'><input type='checkbox' checked={showHomeSites} onChange={(e) => setShowHomeSites(e.target.checked)} />Show Home Websites </div>
+                            <button className='btn btn-info desktop' data-bs-toggle="modal" data-bs-target="#ChangeBackgroundModal">Change Background</button>
+                            <button className='btn btn-info desktop' data-bs-toggle="modal" data-bs-target="#AddNewCategoryModal">Add Category</button>
+                            <button className='btn btn-info desktop' data-bs-toggle="modal" data-bs-target="#AddNewSiteModal">Add WebSite</button>
+
+                            <div className="dropdown mobile">
+                                <button className="btn btn-info dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Expand
+                                </button>
+                                <ul className="dropdown-menu">
+                                    <li><div className='editCheckbox'><input type='checkbox' checked={editMode} onChange={(e) => setEditMode(e.target.checked)} />Edit Site</div></li>
+                                    <li><div className='editCheckbox'><input type='checkbox' checked={showHomeSites} onChange={(e) => setShowHomeSites(e.target.checked)} />Show Home Websites </div></li>
+                                    <li><button className='btn' data-bs-toggle="modal" data-bs-target="#ChangeBackgroundModal">Change Background</button></li>
+                                    <li><button className='btn' data-bs-toggle="modal" data-bs-target="#AddNewCategoryModal">Add Category</button></li>
+                                    <li><button className='btn' data-bs-toggle="modal" data-bs-target="#AddNewSiteModal">Add WebSite</button></li>
+                                </ul>
+                            </div>
+                            <div className='dropdown'>
+                                <button className='btn btn-info dropdown-toggle' type='button' data-bs-toggle='dropdown' aria-expanded='false'>
+                                    Show All Categories
+                                </button>
+                                <ul className='dropdown-menu'>
+                                    {AllCategory.map((category) => (
+                                        <li key={category._id}>
+                                            <a className='dropdown-item' href={`#${category.Category.replace(/\s+/g, '-').toLowerCase()}`}>
+                                                {category.Category}
+                                            </a>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
                         </div>
                         :
                         null
@@ -447,8 +476,40 @@ export default function IndexPage() {
                 {
                     (AdminToken && !token) ?
                         <div className='footer'>
-                            <div className='editCheckbox'><input type='checkbox' checked={AdmineditMode} onChange={(e) => setAdminEditMode(e.target.checked)} />Edit Admin Page</div>
-                            <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ShowFeedbackModal">Show Feedback</button>
+                            <div className='editCheckbox desktop'><input type='checkbox' checked={AdmineditMode} onChange={(e) => setAdminEditMode(e.target.checked)} />Edit Admin Page</div>
+                            <button type="button" className="btn btn-primary desktop" data-bs-toggle="modal" data-bs-target="#ShowFeedbackModal">Show Feedback</button>
+                            <button type="button" className="btn btn-primary desktop" data-bs-toggle="modal" data-bs-target="#changecommonbackgroundModal">Change Background</button>
+                            <button className='btn btn-primary desktop' data-bs-toggle="modal" data-bs-target="#AddCommonCategoryModal">Add Category</button>
+                            <button className='btn btn-primary desktop' data-bs-toggle="modal" data-bs-target="#AddCommonSiteModal">Add Site</button>
+
+                            <div className="dropdown mobile">
+                                <button className="btn btn-info dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Expand
+                                </button>
+                                <ul className="dropdown-menu">
+                                    <li><div className='editCheckbox'><input type='checkbox' checked={AdmineditMode} onChange={(e) => setAdminEditMode(e.target.checked)} />Edit Admin Page</div></li>
+                                    <li><button type="button" className="btn" data-bs-toggle="modal" data-bs-target="#ShowFeedbackModal">Show Feedback</button></li>
+                                    <li><button type="button" className="btn" data-bs-toggle="modal" data-bs-target="#changecommonbackgroundModal">Change Background</button></li>
+                                    <li><button className='btn' data-bs-toggle="modal" data-bs-target="#AddCommonCategoryModal">Add Category</button></li>
+                                    <li><button className='btn ' data-bs-toggle="modal" data-bs-target="#AddCommonSiteModal">Add Site</button></li>
+                                </ul>
+                            </div>
+
+                            <div className='dropdown'>
+                                <button className='btn btn-primary dropdown-toggle' type='button' data-bs-toggle='dropdown' aria-expanded='false'>
+                                    Show All Categories
+                                </button>
+                                <ul className='dropdown-menu'>
+                                    {allCommonCategories.map((category) => (
+                                        <li key={category._id}>
+                                            <a className='dropdown-item' href={`#${category.Name.replace(/\s+/g, '-').toLowerCase()}`}>
+                                                {category.Name}
+                                            </a>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+
                             <div className="modal fade" id="ShowFeedbackModal" tabIndex="-1" aria-labelledby="ShowFeedbackModalLabel" aria-hidden="true">
                                 <div className="modal-dialog">
                                     <div className="modal-content">
@@ -476,9 +537,7 @@ export default function IndexPage() {
                                 </div>
                             </div>
 
-                            <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#changecommonbackgroundModal">
-                                Change Background
-                            </button>
+
                             <div className="modal fade" id="changecommonbackgroundModal" tabIndex="-1" aria-labelledby="changecommonbackgroundModalLabel" aria-hidden="true">
                                 <div className="modal-dialog">
                                     <div className="modal-content">
@@ -504,7 +563,7 @@ export default function IndexPage() {
                             </div>
 
 
-                            <button className='btn btn-primary' data-bs-toggle="modal" data-bs-target="#AddCommonCategoryModal">Add Category</button>
+
                             <div className="modal fade" id="AddCommonCategoryModal" tabIndex="-1" aria-labelledby="AddCommonCategoryModalLabel" aria-hidden="true">
                                 <div className="modal-dialog">
                                     <form onSubmit={addCategory}> {/* Add the onSubmit handler */}
@@ -531,7 +590,7 @@ export default function IndexPage() {
                                 </div>
                             </div>
 
-                            <button className='btn btn-primary' data-bs-toggle="modal" data-bs-target="#AddCommonSiteModal">Add Site</button>
+
                             <div className="modal fade" id="AddCommonSiteModal" tabIndex="-1" aria-labelledby="AddCommonSiteModalLabel" aria-hidden="true">
                                 <div className="modal-dialog">
                                     <form onSubmit={addSite}>
@@ -730,7 +789,7 @@ export default function IndexPage() {
                         <>
                             <div className='Categories row'>
                                 {AllCategory.map((category, idx) => (
-                                    <div key={idx} className='Category col-3'>
+                                    <div key={idx} id={category.Category.replace(/\s+/g, '-').toLowerCase()} className='Category col-3'>
                                         {AllSite.filter(site => site.Category.trim().toLowerCase() === category.Category.trim().toLowerCase())
                                             .map((site, index) => (
                                                 <div key={index} className='WebSite'>
@@ -740,7 +799,7 @@ export default function IndexPage() {
                                         }
                                         {
                                             editMode && (
-                                                <button className='btn btn-outline-danger' onClick={() => deleteCategory(category._id)}>Delete Category</button>
+                                                <button className='btn btn-outline-danger' onClick={() => deleteCategory(category._id)}> Delete Category:  {category.Category}</button>
                                             )
                                         }
                                     </div>
@@ -799,13 +858,11 @@ export default function IndexPage() {
                         : null
                 }
                 {
-                    token ?
-                        null
-                        :
+                    (!token || (token && showHomeSites)) && (
                         <>
                             <div className='Categories'>
                                 {allCommonCategories.map((category, idx) => (
-                                    <div key={idx} className='Category'>
+                                    <div key={idx} id={category.Name.replace(/\s+/g, '-').toLowerCase()} className='Category'>
                                         {allSites.filter(site => site.Category.trim().toLowerCase() === category.Name.trim().toLowerCase())
                                             .map((site, index) => (
                                                 <div key={index} className='WebSite'>
@@ -815,7 +872,7 @@ export default function IndexPage() {
                                         }
                                         {
                                             (AdminToken && AdmineditMode) ?
-                                                <button className='btn btn-outline-danger' onClick={() => deleteCommonCategory(category._id)}>Delete Category</button>
+                                                <button className='btn btn-outline-danger' onClick={() => deleteCommonCategory(category._id)}> Delete Category: {category.Name}</button>
                                                 :
                                                 null
                                         }
@@ -893,6 +950,7 @@ export default function IndexPage() {
                                 ))}
                             </div>
                         </>
+                    )
                 }
             </div>
             <div className='footer'>
@@ -910,22 +968,26 @@ export default function IndexPage() {
                             </div>
                             <div className="modal-body">
                                 <div className='AboutWebsite'>
-                                    <p><strong>W</strong>elcome to our website, designed to enhance your browsing experience and save you time.
-                                    With our platform, you can easily search for and save your favorite websites without the hassle of searching each time.
-                                    Our user-friendly interface allows you to categorize your saved sites, add unique logos, and customize your experience to suit your needs.
-                                    Plus, you can edit all details to keep your information up to date and even change the wallpaper to personalize your space.
-                                    Simplify your online navigation and make the most of your web experience with us!</p>
+                                    <p>
+                                        <strong>W</strong>elcome to our website, designed to enhance your browsing experience and save you time.
+                                        With our platform, you can easily search for and save your favorite websites without the hassle of searching each time.
+                                        Our user-friendly interface allows you to categorize your saved sites, add unique logos, and customize your experience to suit your needs.
+                                        Plus, you can edit all details to keep your information up to date and even change the wallpaper to personalize your space.
+                                        This website can be accessed anywhere, on any device—whether it's a mobile phone, tablet, or laptop.
+                                        Simplify your online navigation and make the most of your web experience with us!
+                                    </p>
+
                                     <p>If you don't have an account or prefer not to create one, you can still enjoy quick access to our pre-saved websites directly from the home screen. Simply browse through the curated categories and popular sites we've saved to make it easy for you to find essential websites, no sign-up needed!</p>
-                                    <br/>
+                                    <br />
                                     <h4>Quick Start Guide</h4>
                                     <h5>Sign Up:</h5>
-                                    Go to Login, select New User? Register, and create your account.<br/><br/>
+                                    Go to Login, select New User? Register, and create your account.<br /><br />
                                     <h5>Log In:</h5>
-                                    Use your new credentials to log in.<br/><br/>
+                                    Use your new credentials to log in.<br /><br />
                                     <h5>Add Websites:</h5>
-                                    On your dashboard, start adding websites to your personal collection.<br/><br/>
+                                    On your dashboard, start adding websites to your personal collection.<br /><br />
                                     <h5>Organize & Customize:</h5>
-                                    Add categories, logos, and set a background for easy access.<br/>
+                                    Add categories, logos, and set a background for easy access.<br />
                                     Now, all your favorite sites are saved and easy to find!
                                 </div>
                                 <div className='AboutAdmin'>
@@ -938,7 +1000,7 @@ export default function IndexPage() {
                                 </div>
                             </div>
                             <div className="modal-footer privacy">
-                            Your privacy is our top priority. All personal information and account details provided on this website are securely stored and protected against unauthorized access. We adhere to strict privacy standards, ensuring that your data remains safe and is never shared with third parties. Enjoy a secure experience every time you visit.
+                                Your privacy is our top priority. All personal information and account details provided on this website are securely stored and protected against unauthorized access. We adhere to strict privacy standards, ensuring that your data remains safe and is never shared with third parties. Enjoy a secure experience every time you visit.
                             </div>
                         </div>
                     </div>
