@@ -495,21 +495,6 @@ export default function IndexPage() {
                                 </ul>
                             </div>
 
-                            <div className='dropdown'>
-                                <button className='btn btn-primary dropdown-toggle' type='button' data-bs-toggle='dropdown' aria-expanded='false'>
-                                    Show All Categories
-                                </button>
-                                <ul className='dropdown-menu'>
-                                    {allCommonCategories.map((category) => (
-                                        <li key={category._id}>
-                                            <a className='dropdown-item' href={`#${category.Name.replace(/\s+/g, '-').toLowerCase()}`}>
-                                                {category.Name}
-                                            </a>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-
                             <div className="modal fade" id="ShowFeedbackModal" tabIndex="-1" aria-labelledby="ShowFeedbackModalLabel" aria-hidden="true">
                                 <div className="modal-dialog">
                                     <div className="modal-content">
@@ -652,6 +637,24 @@ export default function IndexPage() {
                     ) : (
                         <button className='btn btn-primary' data-bs-toggle="modal" data-bs-target="#LoginModal">Login</button>
                     )}
+                    {
+                        token && AdminToken ?
+                        null:
+                        <div className='dropdown'>
+                                <button className='btn btn-primary dropdown-toggle' type='button' data-bs-toggle='dropdown' aria-expanded='false'>
+                                    Show All Categories
+                                </button>
+                                <ul className='dropdown-menu'>
+                                    {allCommonCategories.map((category) => (
+                                        <li key={category._id}>
+                                            <a className='dropdown-item' href={`#${category.Name.replace(/\s+/g, '-').toLowerCase()}`}>
+                                                {category.Name}
+                                            </a>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                    }
                     <button className='btn btn-danger' data-bs-toggle="modal" data-bs-target="#AdminModal">Admin</button>
                     <div className="modal fade" id="AdminModal" tabIndex="-1" aria-labelledby="AdminModalLabel" aria-hidden="true">
                         <div className="modal-dialog modal-dialog-centered">
