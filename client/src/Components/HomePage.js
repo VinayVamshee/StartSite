@@ -117,7 +117,7 @@ export default function HomePage() {
             <div className='SiteCategoryDiv row'>
                 {
                     AllCategory.map((category, idx) => (
-                        <div key={idx} className='Category col'>
+                        <div key={idx} className='Category col-2'>
                             {
                                 AllSite.filter(site => site.Category === category.Category).map((site, index) => (
                                     <a key={index} href={site.Url} target='_blank' rel="noreferrer" className='WebSite'>
