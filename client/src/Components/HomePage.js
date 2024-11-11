@@ -109,7 +109,7 @@ export default function HomePage() {
         <div className='Home' style={{ background: backgroundImage ? `url('${backgroundImage}') no-repeat ` : defaultBackgroundColor }}>
 
             <div className='SearchDiv'>
-                <h1>All-in-One Station</h1>
+                <h1>Sites Station</h1>
                 <form onSubmit={googleSearch} className='SearchDiv'>
                     <input type='text' id='search' placeholder='Search...' />
                 </form>
