@@ -632,12 +632,7 @@ export default function IndexPage() {
                 }
                 <div className='Login'>
                     {token && <h3>{userName}</h3>}
-                    {token ? (
-                        <button className='btn btn-danger' onClick={handleLogout}>Logout</button>
-                    ) : (
-                        <button className='btn btn-primary' data-bs-toggle="modal" data-bs-target="#LoginModal">Login</button>
-                    )}
-                    {
+{
                         token && AdminToken ?
                         null:
                         <div className='dropdown'>
@@ -655,6 +650,12 @@ export default function IndexPage() {
                                 </ul>
                             </div>
                     }
+                    {token ? (
+                        <button className='btn btn-danger' onClick={handleLogout}>Logout</button>
+                    ) : (
+                        <button className='btn btn-primary' data-bs-toggle="modal" data-bs-target="#LoginModal">Login</button>
+                    )}
+                    
                     <button className='btn btn-danger' data-bs-toggle="modal" data-bs-target="#AdminModal">Admin</button>
                     <div className="modal fade" id="AdminModal" tabIndex="-1" aria-labelledby="AdminModalLabel" aria-hidden="true">
                         <div className="modal-dialog modal-dialog-centered">
