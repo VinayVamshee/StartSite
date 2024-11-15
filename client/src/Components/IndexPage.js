@@ -641,7 +641,7 @@ export default function IndexPage() {
                 </button>
  <button className='btn btn-warning' data-bs-toggle="modal" data-bs-target="#FeedbackModal">Give Feedback</button>
 {
-                        token && AdminToken ?
+                        !token && AdminToken ?
                         null:
                         <div className='dropdown'>
                                 <button className='btn btn-primary dropdown-toggle' type='button' data-bs-toggle='dropdown' aria-expanded='false'>
