@@ -454,7 +454,7 @@ export default function IndexPage() {
                     <li><button type="button" className="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#aboutModal">
                     About
                 </button></li>
-                    <li> <button className='btn btn-warning' data-bs-toggle="modal" data-bs-target="#FeedbackModal">Give Feedback</button></li>
+                    <li> <button className='btn btn-warning' data-bs-toggle="modal" data-bs-target="#FeedbackModal">Feedback</button></li>
                                 </ul>
                             </div>
                             <div className='dropdown'>
@@ -639,7 +639,7 @@ export default function IndexPage() {
 <button type="button" className="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#aboutModal">
                     About
                 </button>
- <button className='btn btn-warning' data-bs-toggle="modal" data-bs-target="#FeedbackModal">Give Feedback</button>
+ <button className='btn btn-warning' data-bs-toggle="modal" data-bs-target="#FeedbackModal">Feedback</button>
 {
                         !token && AdminToken ?
                         null:
@@ -1017,7 +1017,7 @@ export default function IndexPage() {
                         </div>
                     </div>
                 </div>
-                <button className='btn btn-warning' data-bs-toggle="modal" data-bs-target="#FeedbackModal">Give Feedback</button>
+                <button className='btn btn-warning' data-bs-toggle="modal" data-bs-target="#FeedbackModal">Feedback</button>
                 <div className="modal fade" id="FeedbackModal" tabIndex="-1" aria-labelledby="FeedbackModalLabel" aria-hidden="true">
                     <div className="modal-dialog">
                         <div className="modal-content">
